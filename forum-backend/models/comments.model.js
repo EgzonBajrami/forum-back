@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Post = require("./posts.model.js");
+const auditTrail = require("../lib/auditTrail.plugin");
 
 
 const CommentSchema = new mongoose.Schema(
@@ -49,6 +50,7 @@ CommentSchema.post("remove", async function (res, next) {
 
 
 
+CommentSchema.plugin(auditTrail);
 const Comment = mongoose.model("comment", CommentSchema);
 
 module.exports = Comment;

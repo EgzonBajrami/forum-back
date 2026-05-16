@@ -33,7 +33,6 @@ const verifyUserTemplate = (token) =>{
 }
 module.exports = {
     sendForgotPasswordEmail: async (email, token) => {
-        console.log('send password func')
         const body = forgotPasswordTemplate(token)
     
         const info = await transporter.sendMail({

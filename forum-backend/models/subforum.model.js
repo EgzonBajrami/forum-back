@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 const schemaCleaner = require('../lib/schemaCleaner')
+const auditTrail = require('../lib/auditTrail.plugin')
 
 const subforumSchema = new mongoose.Schema({
     subforumName:{
@@ -39,6 +40,7 @@ const subforumSchema = new mongoose.Schema({
 );
 subforumSchema.plugin(uniqueValidator);
 schemaCleaner(subforumSchema);
+subforumSchema.plugin(auditTrail);
 
 const subforumModel = mongoose.model('subforum', subforumSchema);
 

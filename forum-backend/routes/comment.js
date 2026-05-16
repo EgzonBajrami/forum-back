@@ -6,7 +6,6 @@ const {jsonResponse} = require('../lib/helper.js')
 
 router.post('/:id',verifyToken, async(req,res)=>{
     try{
-        console.log(req.body);
         const result = await commentController.createPostComments(req.decoded,req.body,req.params);
         res.json(jsonResponse(result));
         
@@ -21,7 +20,6 @@ router.get("/:id", commentController.getSingleComment);
 
 router.post('/edit/:id', verifyToken, async(req,res)=>{
     try{
-        console.log(req.decoded)
         const result = await commentController.editComment(req.decoded, req.body, req.params);
         res.json(jsonResponse(result));
 

@@ -13,7 +13,6 @@ router.get('/', async function(req, res, next) {
 
 });
 router.post('/username', async (req,res)=> {
-  console.log(req.body);
  try{
   const result = await authController.find(req.body);
  
@@ -27,7 +26,6 @@ router.post('/username', async (req,res)=> {
 router.post('/login', fieldMiddleware.login, fieldMiddleware.validate,async (req,res)=>{
   try{
     const result = await authController.login(req.body);
-    console.log(result);
     res.json(jsonResponse(result));
   
   }catch(err){
@@ -35,12 +33,27 @@ router.post('/login', fieldMiddleware.login, fieldMiddleware.validate,async (req
 
   }
 })
+router.post('/refresh-token', async (req, res) => {
+  try {
+    const result = await authController.refreshToken(req.body);
+    res.json(jsonResponse(result));
+  } catch (err) {
+    res.status(400).json(jsonResponse(err.message, false));
+  }
+})
+router.post('/logout', async (req, res) => {
+  try {
+    const result = await authController.logout(req.body);
+    res.json(jsonResponse(result));
+  } catch (err) {
+    res.status(400).json(jsonResponse(err.message, false));
+  }
+})
 
 router.post('/register',fieldMiddleware.register, fieldMiddleware.validate, async(req,res)=>{
  
   try{
     const result = await userController.add(req.body);
-    console.log(result);
     res.json(jsonResponse(result));
 
   }

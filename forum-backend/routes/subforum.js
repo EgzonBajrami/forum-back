@@ -13,7 +13,6 @@ router.get('/subId/:id', verifyToken,async (req,res)=>{
     
     try{ 
       const result = await subController.findSub(req.params);
-      console.log(req.params.id);
       res.json(jsonResponse(result));
     }
     catch(err){

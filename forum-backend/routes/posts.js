@@ -21,7 +21,6 @@ router.post('/:id', verifyToken, async(req,res) =>{
   }
 } )
 router.get('/:id', async (req,res)=>{
-    console.log(req.params.id);
   try{ 
    
    const result = await postModel.findById(req.params.id);
@@ -37,7 +36,6 @@ router.get('/:id', async (req,res)=>{
 router.get('/subforum/:id', async(req,res)=>{
   try{
     const result = await postController.getSubforum(req.params);
-    console.log(result);
 
   }
   catch(err){

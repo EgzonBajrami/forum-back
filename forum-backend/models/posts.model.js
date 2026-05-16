@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const schemaCleaner = require('../lib/schemaCleaner')
+const auditTrail = require('../lib/auditTrail.plugin')
 
 
 const postSchema = new mongoose.Schema({
@@ -67,5 +68,6 @@ const postSchema = new mongoose.Schema({
 
 
 
+postSchema.plugin(auditTrail);
 const postModel = mongoose.model('Post', postSchema);
 module.exports = postModel;

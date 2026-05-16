@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const auditTrail = require('../lib/auditTrail.plugin');
 
 const nestSchema = new mongoose.Schema({
     post: {
@@ -30,5 +31,6 @@ const nestSchema = new mongoose.Schema({
 
 })
 
+nestSchema.plugin(auditTrail);
 const nestModel =  mongoose.model("nest", nestSchema);
 module.exports = nestModel;
